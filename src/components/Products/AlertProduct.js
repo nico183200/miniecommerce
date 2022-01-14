@@ -21,7 +21,7 @@ export const AlertProduct = () => {
     if (show) {
       return (
         <Alert variant="danger" onClose={() => setShow(false)} dismissible>
-          <Alert.Heading>Segui comprando!</Alert.Heading>
+          <Alert.Heading>Continua comprando!</Alert.Heading>
           <p>
             Compra {product} antes de que se agote!
           </p>

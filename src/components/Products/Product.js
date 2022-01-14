@@ -1,11 +1,12 @@
 import React from "react";
 import { Col, Card, Row, Button, Badge } from "react-bootstrap";
-import { saveLastInterestProduct } from "../../app/services/storageService";
+import { saveLastInterestProduct } from "../../app/services/storageServices";
 import db from '../../app/db/db';
 import "../../assets/css/styles.css";
+import { getProductById } from "../../app/services/productsService";
 
 export const Product = ({ item }) => {
-  const { title, image, price, description, category } = item;
+  const { title, image, price, description, category, id } = item;
 
   const addProductToCart = ({title, price, category}) => {
     db.cart.add({
@@ -15,9 +16,14 @@ export const Product = ({ item }) => {
     })
   }
 
+  const handleClickProductCard = (idProduct) => {
+    getProductById(idProduct)
+      .then((data) => console.log(data))
+  }
+
   return (
     <div className="col-lg-3 d-flex align-items-stretch">
-      <Card style={{ marginBottom: "15px", padding: 10 }}>
+      <Card onClick={() => handleClickProductCard(id)} style={{ marginBottom: "15px", padding: 10 }}>
         <Row>
           <Col xs={6}>
             <Card.Img
